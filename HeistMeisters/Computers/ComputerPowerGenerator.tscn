@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://GFX/PNG/Tiles/Genrator.png" type="Texture" id=1]
+[ext_resource path="res://Computers/ComputerPowerGenerator.gd" type="Script" id=2]
+
+[node name="ComputerPowerGenerator" type="Area2D"]
+collision_layer = 8
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 2
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -24.8531, 25.8182, -24.9711, 22.2787, -20.8417, 22.1607, -20.6057, 17.5593, -17.3021, 17.6773, -16.8302, 14.2557, -3.26199, -14.4145, 3.46311, -14.4145, 16.5594, 13.6658, 17.0313, 17.6773, 21.1608, 17.5593, 21.1608, 17.5593, 21.5147, 21.9247, 21.3967, 21.9247, 24.8183, 21.5708, 24.8183, 21.3348, 25.2902, 25.8182 )
+[connection signal="body_entered" from="." to="." method="_on_ComputerPowerGenerator_body_entered"]

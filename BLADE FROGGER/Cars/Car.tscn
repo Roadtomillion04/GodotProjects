@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Blade Frogger Assets/Car/Yellow1.png" type="Texture" id=1]
+[ext_resource path="res://Cars/Car.gd" type="Script" id=2]
+[ext_resource path="res://Blade Frogger Assets/Car/Grey1.png" type="Texture" id=3]
+[ext_resource path="res://Blade Frogger Assets/Car/Yellow2.png" type="Texture" id=4]
+[ext_resource path="res://Blade Frogger Assets/Car/Grey2.png" type="Texture" id=5]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "Yellow2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "Yellow1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "Grey1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "Grey2",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 86.135, 35 )
+
+[node name="Car" type="Area2D"]
+position = Vector2( 850.293, 264.298 )
+collision_layer = 2
+collision_mask = 2147483649
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 3 )
+animation = "Grey2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 4 )
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 6.31387, -2.38523 )
+scale = Vector2( 1.63139, 1.23852 )
+[connection signal="body_entered" from="." to="." method="_on_Car_body_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

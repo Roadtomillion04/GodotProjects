@@ -1,0 +1,76 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Doors/Door.tscn" type="PackedScene" id=1]
+[ext_resource path="res://GFX/PNG/Tiles/tile_463.png" type="Texture" id=2]
+[ext_resource path="res://Interface/NumPad.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Doors/LockedDoor.gd" type="Script" id=4]
+[ext_resource path="res://SFX/doorOpen_2.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Interface/Theme.tres" type="Theme" id=6]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Door_open"
+length = 2.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("DoorSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -65, 0 ), Vector2( -65, 0 ) ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("AudioStreamPlayer2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 5 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[node name="LockedDoor" instance=ExtResource( 1 )]
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" parent="." index="0"]
+visible = false
+
+[node name="DoorSprite" parent="." index="1"]
+texture = ExtResource( 2 )
+
+[node name="AnimationPlayer" parent="." index="2"]
+anims/Door_open = SubResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="4"]
+
+[node name="NumPad" parent="CanvasLayer" index="0" instance=ExtResource( 3 )]
+margin_right = 300.0
+margin_bottom = 400.0
+
+[node name="Timer" type="Timer" parent="." index="5"]
+one_shot = true
+
+[node name="Label" type="Label" parent="." index="6" groups=[
+"labels",
+]]
+margin_left = -26.4285
+margin_top = -29.732
+margin_right = 25.5715
+margin_bottom = -11.732
+theme = ExtResource( 6 )
+text = "test"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="reset" from="." to="CanvasLayer/NumPad" method="_on_LockedDoor_reset"]
+[connection signal="combination_correct" from="CanvasLayer/NumPad" to="." method="_on_NumPad_combination_correct"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

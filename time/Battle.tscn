@@ -1,0 +1,318 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://dpcomic.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Battleenemy_ghost.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Battleenemy_slime.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Heal_button.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Samina_button.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Battleenemy_Rat.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Run_button.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Battleenemy_frog.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Block_button.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Attack_button.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Battle.gd" type="Script" id=11]
+[ext_resource path="res://Player_stats.gd" type="Script" id=12]
+[ext_resource path="res://playerpoke.png" type="Texture" id=13]
+[ext_resource path="res://background.jpg" type="Texture" id=14]
+[ext_resource path="res://Stats_panel.gd" type="Script" id=15]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.310479, 0.111877, 0.367188, 1 )
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 1.16, 0, 19.66, 1 )
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+anti_aliasing_size = 4
+
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=6]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=7]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=8]
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=9]
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 0,
+"values": [  ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ColorRect:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 0,
+"values": [  ]
+}
+
+[node name="Battle" type="Node"]
+script = ExtResource( 11 )
+enemies = [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 6 ), ExtResource( 8 ) ]
+
+[node name="Player_stats" type="Node" parent="."]
+script = ExtResource( 12 )
+
+[node name="Sprite" type="Sprite" parent="Player_stats"]
+position = Vector2( 52.5565, 73.742 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 13 )
+
+[node name="EnemyPosition" type="Position2D" parent="."]
+position = Vector2( 296.65, 78.93 )
+
+[node name="UI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="UI"]
+margin_left = 1.0
+margin_top = 56.0
+margin_right = 365.0
+margin_bottom = 119.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="NextRoomButton" type="Button" parent="UI/CenterContainer"]
+margin_left = 124.0
+margin_top = 21.0
+margin_right = 239.0
+margin_bottom = 41.0
+text = "Enter next room"
+
+[node name="Textbox_panel" type="Panel" parent="UI"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -79.0
+margin_top = -42.0
+margin_right = 66.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Textbox" type="RichTextLabel" parent="UI/Textbox_panel"]
+margin_left = 9.0
+margin_top = 2.0
+margin_right = 136.0
+margin_bottom = 38.0
+custom_styles/normal = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 3 )
+custom_constants/line_separation = 1
+bbcode_enabled = true
+bbcode_text = "This is how [rainbow]effect[/rainbow] looks"
+text = "This is how effect looks"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stats_panel" type="Panel" parent="UI"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -40.0
+margin_right = 101.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 4 )
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StatsContainer" type="HBoxContainer" parent="UI/Stats_panel"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -40.0
+margin_right = 101.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HP" type="Label" parent="UI/Stats_panel/StatsContainer"]
+margin_right = 36.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "HP
+25/25"
+align = 3
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AP" type="Label" parent="UI/Stats_panel/StatsContainer"]
+margin_left = 40.0
+margin_right = 61.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "AP
+3"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MP" type="Label" parent="UI/Stats_panel/StatsContainer"]
+margin_left = 65.0
+margin_right = 101.0
+margin_bottom = 40.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "MP
+50/50"
+align = 3
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BattleContainer" type="GridContainer" parent="UI"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -118.0
+margin_top = -40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SkillsButton" type="Button" parent="UI/BattleContainer"]
+margin_right = 118.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Skills"
+
+[node name="Run_button" parent="UI/BattleContainer" instance=ExtResource( 7 )]
+margin_top = 24.0
+margin_right = 118.0
+margin_bottom = 44.0
+next_scene = "res://Node2D.tscn"
+spawn_pos = Vector2( 52, 196 )
+
+[node name="BattleActionButtons" type="GridContainer" parent="UI"]
+anchor_left = 1.0
+anchor_top = 0.797
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -118.0
+margin_top = -42.0
+margin_bottom = 1.45999
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/vseparation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Attack_button" parent="UI/BattleActionButtons" instance=ExtResource( 10 )]
+margin_right = 118.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 8 )
+
+[node name="Heal_button" parent="UI/BattleActionButtons" instance=ExtResource( 4 )]
+margin_top = 20.0
+margin_right = 118.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 8 )
+
+[node name="Samina_button" parent="UI/BattleActionButtons" instance=ExtResource( 5 )]
+margin_top = 40.0
+margin_right = 118.0
+margin_bottom = 60.0
+custom_fonts/font = SubResource( 8 )
+
+[node name="Block_button" parent="UI/BattleActionButtons" instance=ExtResource( 9 )]
+margin_top = 60.0
+margin_right = 118.0
+margin_bottom = 80.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 180.928, 89.1363 )
+scale = Vector2( 0.17494, 0.150679 )
+z_index = -5
+texture = ExtResource( 14 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+"anims/Fade effect" = SubResource( 9 )
+[connection signal="ap_changed" from="Player_stats" to="UI/Stats_panel" method="_on_Player_stats_ap_changed"]
+[connection signal="hp_changed" from="Player_stats" to="UI/Stats_panel" method="_on_Player_stats_hp_changed"]
+[connection signal="mp_changed" from="Player_stats" to="UI/Stats_panel" method="_on_Player_stats_mp_changed"]
+[connection signal="pressed" from="UI/CenterContainer/NextRoomButton" to="." method="_on_NextRoomButton_pressed"]
+[connection signal="pressed" from="UI/BattleContainer/SkillsButton" to="." method="_on_SkillsButton_pressed"]
+[connection signal="pressed" from="UI/BattleContainer/Run_button" to="." method="_on_Run_button_pressed"]

@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://GFX/PNG/Tiles/Knife.png" type="Texture" id=1]
+[ext_resource path="res://Items and Objects/ObjectKnife.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 6.0
+height = 35.0
+
+[node name="ObjectKnife" type="Area2D"]
+collision_layer = 0
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 1 )
+region_rect = Rect2( -1.49028, 494.715, 16.9809, 9.81116 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( -3.95525, 0.663589 )
+rotation = -0.785398
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+[connection signal="body_entered" from="." to="." method="_on_ObjectKnife_body_entered"]

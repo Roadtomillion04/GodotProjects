@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Samina_button.gd" type="Script" id=1]
+[ext_resource path="res://Action_button.tscn" type="PackedScene" id=2]
+
+[node name="Samina_button" instance=ExtResource( 2 )]
+custom_colors/font_color = Color( 0.85098, 1, 0, 1 )
+custom_colors/font_color_hover = Color( 0.85098, 1, 0, 1 )
+custom_colors/font_color_pressed = Color( 0.85098, 1, 0, 1 )
+text = "Stamina"
+script = ExtResource( 1 )
+
+[node name="Hover_description" parent="." index="0"]
+description = "refills full MP
+consumes 3AP"

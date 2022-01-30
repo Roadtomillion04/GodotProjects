@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/mus_spider.ogg-49c6540776383347559e37d095ad6b2a.oggstr"
+
+[deps]
+
+source_file="res://mus_spider.ogg"
+dest_files=[ "res://.import/mus_spider.ogg-49c6540776383347559e37d095ad6b2a.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

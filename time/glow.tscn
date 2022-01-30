@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://sRock.png" type="Texture" id=1]
+
+[sub_resource type="Environment" id=1]
+background_mode = 4
+glow_enabled = true
+glow_hdr_threshold = 0.0
+
+[node name="Node2D" type="Node2D"]
+position = Vector2( 186.468, 84.4147 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
+
+[node name="sRock" type="Sprite" parent="WorldEnvironment"]
+modulate = Color( 2.89, 1.74, 4.05, 1 )
+position = Vector2( 182.826, 83.5659 )
+scale = Vector2( 8, 8 )
+texture = ExtResource( 1 )

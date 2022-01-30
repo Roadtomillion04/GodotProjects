@@ -1,0 +1,6 @@
+[gd_scene format=2]
+
+[node name="SwordHitBox" type="Area2D"]
+scale = Vector2( 1.29862, 9.70387 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

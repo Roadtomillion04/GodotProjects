@@ -1,0 +1,111 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://GFX/Interface/Fonts/kenvector_future_thin.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Interface/Theme.tres" type="Theme" id=2]
+[ext_resource path="res://Interface/Lobby.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 76
+font_data = ExtResource( 1 )
+
+[node name="Lobby" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0.08, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 185.0
+margin_top = 147.0
+margin_right = 839.0
+margin_bottom = 453.0
+custom_constants/separation = 40
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_right = 654.0
+margin_bottom = 86.0
+custom_fonts/font = SubResource( 1 )
+text = "heist meisters"
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 126.0
+margin_right = 654.0
+margin_bottom = 306.0
+custom_constants/vseparation = 30
+custom_constants/hseparation = 10
+columns = 2
+
+[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer/GridContainer"]
+margin_right = 96.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+text = " start "
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/GridContainer"]
+margin_left = 106.0
+margin_top = 11.0
+margin_right = 202.0
+margin_bottom = 29.0
+text = "start"
+align = 1
+
+[node name="TutorialButton" type="Button" parent="CenterContainer/VBoxContainer/GridContainer"]
+margin_top = 70.0
+margin_right = 96.0
+margin_bottom = 110.0
+rect_min_size = Vector2( 40, 40 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+text = "tutorial"
+
+[node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/GridContainer"]
+margin_left = 106.0
+margin_top = 81.0
+margin_right = 202.0
+margin_bottom = 99.0
+text = "Tutorial"
+align = 1
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer/GridContainer"]
+margin_top = 140.0
+margin_right = 96.0
+margin_bottom = 180.0
+rect_min_size = Vector2( 40, 40 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+text = " quit "
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/GridContainer"]
+margin_left = 106.0
+margin_top = 151.0
+margin_right = 202.0
+margin_bottom = 169.0
+text = "quit"
+align = 1
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/GridContainer/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/GridContainer/TutorialButton" to="." method="_on_TutorialButton_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/GridContainer/QuitButton" to="." method="_on_QuitButton_pressed"]

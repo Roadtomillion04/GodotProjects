@@ -1,0 +1,171 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://GrassBackground.png" type="Texture" id=1]
+[ext_resource path="res://player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Camera2D.tscn" type="PackedScene" id=3]
+[ext_resource path="res://gradiant.png" type="Texture" id=4]
+[ext_resource path="res://Door.tscn" type="PackedScene" id=5]
+[ext_resource path="res://BatHpLabel.gd" type="Script" id=6]
+[ext_resource path="res://Player_detect.gd" type="Script" id=7]
+[ext_resource path="res://MediumShadow.png" type="Texture" id=8]
+[ext_resource path="res://Bat.png" type="Texture" id=9]
+[ext_resource path="res://dpcomic.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://Bat.gd" type="Script" id=11]
+[ext_resource path="res://HurtBox.tscn" type="PackedScene" id=12]
+[ext_resource path="res://SwordHitBox.tscn" type="PackedScene" id=13]
+[ext_resource path="res://SoftEnemyCollision.tscn" type="PackedScene" id=14]
+[ext_resource path="res://StatsForWorldCharacters.tscn" type="PackedScene" id=15]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 9 )
+region = Rect2( 16, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 9 )
+region = Rect2( 32, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 9 )
+region = Rect2( 48, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 9 )
+region = Rect2( 64, 0, 16, 24 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 6.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=7]
+radius = 6.89765
+height = 0.0
+
+[sub_resource type="CircleShape2D" id=8]
+radius = 51.2468
+
+[sub_resource type="DynamicFont" id=12]
+font_data = ExtResource( 10 )
+
+[node name="Level2" type="Node2D"]
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 172.163, 56.6813 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( -144, -96, 528, 400 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 204.747, 120.152 )
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
+
+[node name="Light2D" type="Light2D" parent="Player"]
+enabled = false
+texture = ExtResource( 4 )
+
+[node name="Camera2D" parent="." instance=ExtResource( 3 )]
+position = Vector2( 204.747, 120.152 )
+
+[node name="TopLeft" parent="Camera2D/Limits" index="0"]
+position = Vector2( -90.0544, -140.968 )
+
+[node name="BottomRight" parent="Camera2D/Limits" index="1"]
+position = Vector2( 436.281, 254.692 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+[node name="Door" parent="." instance=ExtResource( 5 )]
+position = Vector2( 189.69, 227.97 )
+z_index = 1
+collision_layer = 2147483649
+collision_mask = 2
+next_scene = "res://Node2D.tscn"
+spawn_pos = Vector2( 547, 301 )
+
+[node name="Bat" type="KinematicBody2D" parent="."]
+position = Vector2( 167.808, -47.1434 )
+scale = Vector2( 2, 2 )
+collision_layer = 16
+collision_mask = 2147483649
+script = ExtResource( 11 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Bat"]
+frames = SubResource( 6 )
+frame = 1
+playing = true
+offset = Vector2( 0, -12 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="MediumShadow" type="Sprite" parent="Bat"]
+texture = ExtResource( 8 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bat"]
+visible = false
+scale = Vector2( 1, 0.8 )
+shape = SubResource( 7 )
+disabled = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Player_detect" type="Area2D" parent="Bat"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bat/Player_detect"]
+visible = false
+light_mask = 32
+shape = SubResource( 8 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HurtBox" parent="Bat" instance=ExtResource( 12 )]
+collision_layer = 8
+collision_mask = 0
+
+[node name="StatsForWorldCharacters" parent="Bat" instance=ExtResource( 15 )]
+max_health = 10
+
+[node name="SwordHitBox" parent="Bat" instance=ExtResource( 13 )]
+collision_layer = 0
+collision_mask = 4
+
+[node name="BatHpLabel" type="Label" parent="Bat"]
+margin_left = -8.11488
+margin_top = -27.3648
+margin_right = 12.8851
+margin_bottom = -13.3648
+rect_scale = Vector2( 0.78232, 0.322454 )
+custom_fonts/font = SubResource( 12 )
+text = "10/10"
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SoftEnemyCollision" parent="Bat" instance=ExtResource( 14 )]
+gravity = 0.0
+[connection signal="body_entered" from="Bat/Player_detect" to="Bat/Player_detect" method="_on_Player_detect_body_entered"]
+[connection signal="body_exited" from="Bat/Player_detect" to="Bat/Player_detect" method="_on_Player_detect_body_exited"]
+[connection signal="area_entered" from="Bat/HurtBox" to="Bat" method="_on_HurtBox_area_entered"]
+
+[editable path="Camera2D"]

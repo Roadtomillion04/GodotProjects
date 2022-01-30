@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Wind_Draft.gd" type="Script" id=1]
+[ext_resource path="res://black.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 65.8672, 46.0268 )
+
+[sub_resource type="Curve" id=2]
+
+[sub_resource type="CurveTexture" id=3]
+curve = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+emission_shape = 2
+emission_box_extents = Vector3( -6, 16, 1 )
+flag_disable_z = true
+direction = Vector3( 100, -200, 0 )
+spread = 160.86
+flatness = 0.94
+gravity = Vector3( 0, -98, 0 )
+angular_velocity = -82.84
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 29.88
+radial_accel = 100.0
+radial_accel_random = 1.0
+radial_accel_curve = SubResource( 3 )
+angle = 198.6
+angle_random = 0.31
+scale = 2.0
+scale_random = 0.91
+color = Color( 0.647059, 0.596078, 0.713726, 1 )
+
+[node name="Wind_draft" type="Node2D"]
+
+[node name="Wind_Draft" type="Area2D" parent="."]
+position = Vector2( 6.14664, 121.683 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="black" type="Sprite" parent="Wind_Draft"]
+position = Vector2( 48.8271, 0 )
+scale = Vector2( 4.052, 0.4 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wind_Draft"]
+position = Vector2( 48.6096, -39.6427 )
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Particles2D" type="Particles2D" parent="Wind_Draft"]
+position = Vector2( 44.7266, 0.840897 )
+amount = 15
+process_material = SubResource( 4 )
+[connection signal="body_entered" from="Wind_Draft" to="Wind_Draft" method="_on_Wind_Draft_body_entered"]
+[connection signal="body_exited" from="Wind_Draft" to="Wind_Draft" method="_on_Wind_Draft_body_exited"]

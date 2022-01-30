@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://RandomLevelGenerator.gd" type="Script" id=1]
+[ext_resource path="res://world 2.tscn" type="PackedScene" id=2]
+[ext_resource path="res://World 3.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Node2D.tscn" type="PackedScene" id=4]
+[ext_resource path="res://World 4.tscn" type="PackedScene" id=5]
+
+[node name="RandomLevelGenerator" type="Button"]
+margin_left = 97.093
+margin_top = 58.9293
+margin_right = 242.093
+margin_bottom = 78.9293
+text = "random lvl generator"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+randomlvl = [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 2 ) ]
+[connection signal="pressed" from="." to="." method="_on_RandomLevelGenerator_pressed"]

@@ -1,0 +1,210 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Levels/TemplateLevels.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Character/NPC's/Camera.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Doors/Door.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Lightmaps/torchmap.png" type="Texture" id=4]
+[ext_resource path="res://GFX/PNG/Tiles/tile_473.png" type="Texture" id=5]
+[ext_resource path="res://GFX/Interface/PNG/crossair_blueOutline.png" type="Texture" id=6]
+[ext_resource path="res://Levels/TutorialLevel.gd" type="Script" id=7]
+[ext_resource path="res://Computers/Computer.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Doors/LockedDoor.tscn" type="PackedScene" id=9]
+[ext_resource path="res://SFX/message.wav" type="AudioStream" id=10]
+[ext_resource path="res://Loot/Briefcase.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Interface/TutorialGUI.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Interface/MessageTemplate.gd" type="Script" id=13]
+[ext_resource path="res://Interface/MessageTemplate.tscn" type="PackedScene" id=14]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 64, 64 )
+
+[node name="TutorialLevel" instance=ExtResource( 1 )]
+script = ExtResource( 7 )
+
+[node name="TutorialGUI" parent="." index="0" instance=ExtResource( 12 )]
+
+[node name="TileMap" parent="Navigation2D" index="0"]
+tile_data = PoolIntArray( -393201, 0, 0, -393200, 0, 2, -393199, 0, 2, -393198, 0, 2, -393197, 0, 2, -393196, 0, 2, -393195, 0, 2, -393194, 0, 2, -393193, 0, 2, -393192, 0, 2, -393191, 0, 2, -393190, 0, 2, -393189, 0, 2, -393188, 0, 2, -393187, 0, 2, -393186, 0, 2, -393185, 0, 2, -393184, 0, 2, -393183, 0, 2, -393182, 0, 2, -393181, 0, 2, -393180, 0, 2, -393179, 0, 2, -393178, 0, 2, -393177, 0, 2, -393176, 0, 3, -393175, 0, 2, -393174, 0, 2, -393173, 0, 2, -393172, 0, 1, -327665, 0, 65538, -327664, 1, 0, -327663, 1, 0, -327662, 1, 0, -327661, 1, 0, -327660, 1, 0, -327659, 1, 0, -327658, 1, 0, -327657, 1, 0, -327656, 1, 0, -327655, 1, 0, -327654, 1, 0, -327653, 1, 0, -327652, 1, 0, -327651, 1, 0, -327650, 1, 0, -327649, 1, 0, -327648, 1, 0, -327647, 1, 0, -327646, 1, 0, -327645, 1, 0, -327644, 1, 0, -327643, 1, 0, -327642, 1, 0, -327641, 1, 0, -327640, 0, 6, -327639, 1, 0, -327638, 1, 0, -327637, 1, 0, -327636, 0, 65538, -262129, 0, 65538, -262128, 1, 0, -262127, 1, 4, -262126, 1, 4, -262125, 1, 0, -262124, 1, 0, -262123, 1, 2, -262122, 1, 0, -262121, 1, 4, -262120, 1, 0, -262119, 1, 4, -262118, 1, 4, -262117, 1, 0, -262116, 1, 4, -262115, 1, 0, -262114, 1, 0, -262113, 1, 0, -262112, 1, 0, -262111, 1, 0, -262110, 1, 0, -262109, 1, 0, -262108, 1, 0, -262107, 1, 0, -262106, 1, 4, -262105, 1, 0, -262104, 1, 0, -262103, 1, 0, -262102, 1, 2, -262101, 1, 0, -262100, 0, 65538, -196593, 0, 65538, -196592, 1, 0, -196591, 1, 0, -196590, 1, 4, -196589, 1, 0, -196588, 1, 0, -196587, 1, 0, -196586, 1, 0, -196585, 1, 0, -196584, 1, 0, -196583, 1, 0, -196582, 1, 2, -196581, 1, 0, -196580, 1, 0, -196579, 1, 0, -196578, 0, 0, -196577, 0, 2, -196576, 0, 2, -196575, 0, 2, -196574, 0, 2, -196573, 0, 1, -196572, 1, 0, -196571, 1, 2, -196570, 1, 2, -196569, 1, 0, -196568, 0, 65541, -196567, 1, 0, -196566, 1, 0, -196565, 1, 0, -196564, 0, 65538, -131057, 0, 65538, -131056, 1, 0, -131055, 1, 4, -131054, 1, 0, -131053, 1, 0, -131052, 0, 196614, -131051, 1, 0, -131050, 1, 4, -131049, 1, 0, -131048, 1, 2, -131047, 1, 0, -131046, 1, 0, -131045, 1, 0, -131044, 0, 196614, -131043, 1, 0, -131042, 0, 65538, -131037, 0, 65538, -131036, 1, 0, -131035, 1, 2, -131034, 1, 0, -131033, 1, 0, -131032, 0, 262146, -131031, 0, 262149, -131030, 0, 2, -131029, 0, 2, -131028, 0, 65537, -65521, 0, 65538, -65520, 1, 0, -65519, 1, 0, -65518, 1, 2, -65517, 1, 0, -65516, 1, 0, -65515, 1, 0, -65514, 1, 2, -65513, 1, 0, -65512, 1, 0, -65511, 1, 0, -65510, 1, 0, -65509, 1, 0, -65508, 1, 0, -65507, 1, 0, -65506, 0, 65538, -65501, 0, 65538, -65500, 1, 0, -65499, 1, 0, -65498, 1, 2, -65497, 1, 0, -65496, 0, 65543, -65495, 0, 327683, 65535, 0, 0, 0, 0, 2, 1, 0, 2, 2, 0, 2, 3, 0, 2, 4, 0, 2, 5, 0, 2, 6, 0, 2, 7, 0, 2, 8, 0, 2, 9, 0, 2, 10, 0, 2, 11, 0, 2, 12, 0, 2, 13, 0, 2, 14, 0, 2, 15, 0, 65540, 16, 1, 0, 17, 1, 0, 18, 1, 4, 19, 1, 0, 20, 1, 2, 21, 1, 4, 22, 1, 2, 23, 1, 0, 24, 0, 196614, 25, 1, 0, 26, 1, 4, 27, 1, 4, 28, 1, 0, 29, 1, 0, 30, 0, 65538, 35, 0, 65538, 36, 1, 0, 37, 1, 4, 38, 1, 2, 39, 1, 0, 40, 1, 0, 41, 0, 65538, 131071, 0, 65538, 65536, 1, 0, 65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 65540, 1, 0, 65541, 1, 0, 65542, 1, 0, 65543, 1, 0, 65544, 1, 0, 65545, 1, 0, 65546, 1, 0, 65547, 1, 0, 65548, 1, 0, 65549, 1, 0, 65550, 1, 0, 65551, 0, 6, 65552, 1, 0, 65553, 1, 2, 65554, 1, 2, 65555, 1, 2, 65556, 1, 4, 65557, 1, 2, 65558, 1, 4, 65559, 1, 0, 65560, 1, 0, 65561, 1, 0, 65562, 1, 0, 65563, 1, 0, 65564, 1, 0, 65565, 1, 0, 65566, 0, 65538, 65571, 0, 65538, 65572, 1, 0, 65573, 1, 4, 65574, 1, 0, 65575, 1, 4, 65576, 1, 0, 65577, 0, 65538, 196607, 0, 65538, 131072, 1, 0, 131073, 1, 0, 131074, 1, 4, 131075, 1, 0, 131076, 1, 0, 131077, 1, 0, 131078, 1, 0, 131079, 1, 4, 131080, 1, 2, 131081, 1, 0, 131082, 1, 2, 131083, 1, 0, 131084, 1, 2, 131085, 1, 0, 131086, 1, 0, 131087, 1, 0, 131088, 1, 0, 131089, 1, 0, 131090, 1, 2, 131091, 1, 0, 131092, 1, 0, 131093, 1, 2, 131094, 1, 0, 131095, 1, 0, 131096, 1, 4, 131097, 1, 2, 131098, 1, 2, 131099, 1, 0, 131100, 1, 0, 131101, 1, 0, 131102, 0, 65538, 131107, 0, 65538, 131108, 1, 0, 131109, 1, 0, 131110, 1, 0, 131111, 1, 2, 131112, 1, 0, 131113, 0, 65538, 262143, 0, 65538, 196608, 1, 0, 196609, 1, 0, 196610, 1, 0, 196611, 1, 0, 196612, 1, 0, 196613, 1, 0, 196614, 1, 0, 196615, 1, 0, 196616, 1, 0, 196617, 1, 0, 196618, 1, 0, 196619, 1, 0, 196620, 1, 0, 196621, 1, 0, 196622, 1, 0, 196623, 0, 65541, 196624, 1, 0, 196625, 1, 0, 196626, 1, 0, 196627, 1, 0, 196628, 1, 0, 196629, 1, 0, 196630, 1, 0, 196631, 1, 0, 196632, 1, 0, 196633, 1, 0, 196634, 1, 0, 196635, 1, 0, 196636, 1, 0, 196637, 1, 0, 196638, 0, 65538, 196643, 0, 65538, 196644, 1, 0, 196645, 1, 0, 196646, 1, 0, 196647, 1, 0, 196648, 1, 0, 196649, 0, 65536, 196650, 0, 2, 196651, 0, 1, 327679, 0, 65536, 262144, 0, 2, 262145, 0, 2, 262146, 0, 2, 262147, 0, 2, 262148, 0, 2, 262149, 0, 2, 262150, 0, 2, 262151, 0, 2, 262152, 0, 2, 262153, 0, 2, 262154, 0, 2, 262155, 0, 2, 262156, 0, 2, 262157, 0, 2, 262158, 0, 2, 262159, 0, 4, 262160, 0, 2, 262161, 0, 2, 262162, 0, 2, 262163, 0, 2, 262164, 0, 2, 262165, 0, 2, 262166, 0, 2, 262167, 0, 2, 262168, 0, 2, 262169, 0, 2, 262170, 0, 2, 262171, 0, 2, 262172, 0, 2, 262173, 0, 2, 262174, 0, 65537, 262179, 0, 65536, 262180, 0, 2, 262181, 0, 2, 262182, 0, 2, 262183, 0, 1, 262184, 1, 0, 262185, 1, 0, 262186, 1, 0, 262187, 0, 65538, 327719, 0, 65538, 327720, 1, 0, 327721, 1, 0, 327722, 1, 0, 327723, 0, 65538, 393255, 0, 65536, 393256, 0, 2, 393257, 0, 2, 393258, 0, 2, 393259, 0, 65537 )
+
+[node name="Camera" parent="Cameras" index="0" instance=ExtResource( 2 )]
+position = Vector2( 1599.45, -305.45 )
+rotation = 1.5708
+
+[node name="Door" parent="Doors" index="0" instance=ExtResource( 3 )]
+position = Vector2( 992.381, 162.238 )
+rotation = 1.5708
+
+[node name="Light2D" type="Light2D" parent="Doors/Door" index="4"]
+texture = ExtResource( 5 )
+energy = 0.7
+
+[node name="LockedDoor" parent="LockedDoors" index="0" instance=ExtResource( 9 )]
+position = Vector2( 2595.99, -224.108 )
+rotation = 1.5708
+
+[node name="Computer" parent="Computers" index="0" instance=ExtResource( 8 )]
+position = Vector2( 2366.13, 240.649 )
+lock_group = "1"
+
+[node name="Exit" parent="." index="9"]
+position = Vector2( 2552.96, 285.721 )
+z_index = 0
+
+[node name="Exit" parent="Exit" index="0"]
+margin_left = 5.03967
+margin_top = -3.77979
+margin_right = 205.04
+margin_bottom = 96.2202
+
+[node name="Briefcase" parent="CollectableObjects" index="0" instance=ExtResource( 11 )]
+position = Vector2( 2716.7, -216.375 )
+
+[node name="Light2D" type="Light2D" parent="." index="12"]
+position = Vector2( -0.406006, 162.57 )
+texture = ExtResource( 4 )
+offset = Vector2( 315, 0 )
+energy = 0.65
+shadow_enabled = true
+
+[node name="Light2D2" type="Light2D" parent="." index="13"]
+position = Vector2( 694.01, 249.382 )
+rotation = -0.349066
+texture = ExtResource( 4 )
+offset = Vector2( 315, 0 )
+energy = 0.5
+shadow_enabled = true
+
+[node name="Light2D3" type="Light2D" parent="." index="14"]
+position = Vector2( 651.584, 65.5345 )
+rotation = 0.349066
+texture = ExtResource( 4 )
+offset = Vector2( 315, 0 )
+energy = 0.5
+shadow_enabled = true
+
+[node name="ObjectiveMarkers" type="Node" parent="." index="15"]
+
+[node name="DoorObjective" type="Area2D" parent="ObjectiveMarkers" index="0"]
+position = Vector2( 971.03, 160.2 )
+collision_layer = 0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectiveMarkers/DoorObjective" index="0"]
+shape = SubResource( 1 )
+
+[node name="NightVisionObjective" type="Area2D" parent="ObjectiveMarkers" index="1"]
+position = Vector2( 1275.83, -17.3287 )
+collision_layer = 0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectiveMarkers/NightVisionObjective" index="0"]
+shape = SubResource( 1 )
+
+[node name="BriefcaseObjective" type="Area2D" parent="ObjectiveMarkers" index="2"]
+position = Vector2( 2155.13, -252.98 )
+collision_layer = 0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectiveMarkers/BriefcaseObjective" index="0"]
+shape = SubResource( 1 )
+
+[node name="LockedDoorObjective" type="Area2D" parent="ObjectiveMarkers" index="3"]
+position = Vector2( 2550.68, -222.689 )
+collision_layer = 0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectiveMarkers/LockedDoorObjective" index="0"]
+shape = SubResource( 1 )
+
+[node name="ComputerObjective" type="Area2D" parent="ObjectiveMarkers" index="4"]
+position = Vector2( 2366.41, 162.498 )
+collision_layer = 0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectiveMarkers/ComputerObjective" index="0"]
+shape = SubResource( 1 )
+
+[node name="ObjectivePositions" type="Node" parent="." index="16"]
+
+[node name="DoorObjective" type="Position2D" parent="ObjectivePositions" index="0"]
+position = Vector2( 963.125, 166.059 )
+
+[node name="NightvisionObjective" type="Position2D" parent="ObjectivePositions" index="1"]
+position = Vector2( 1265.01, -11.657 )
+
+[node name="LootObjective" type="Position2D" parent="ObjectivePositions" index="2"]
+position = Vector2( 2153.65, -249.544 )
+
+[node name="LockedDoorObjective" type="Position2D" parent="ObjectivePositions" index="3"]
+position = Vector2( 2546.09, -218.625 )
+
+[node name="ComputerObjective" type="Position2D" parent="ObjectivePositions" index="4"]
+position = Vector2( 2372.47, 160.732 )
+
+[node name="ExitObjective" type="Position2D" parent="ObjectivePositions" index="5"]
+position = Vector2( 2636.27, 300.581 )
+
+[node name="Tween" type="Tween" parent="." index="17"]
+
+[node name="ObjectivePointer" type="Sprite" parent="." index="18"]
+position = Vector2( 162.098, 159.979 )
+z_index = 2
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Light2D" type="Light2D" parent="ObjectivePointer" index="0"]
+position = Vector2( -0.89093, 0 )
+texture = ExtResource( 6 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="19"]
+stream = ExtResource( 10 )
+volume_db = -5.0
+
+[node name="ObjectiveMessages" type="Node" parent="." index="20"]
+
+[node name="WelcomeMessage" parent="ObjectiveMessages" index="0" instance=ExtResource( 14 )]
+script = ExtResource( 13 )
+text = "Welcome recruit to you first training day! please proceed forward to door"
+
+[node name="DoorMessage" parent="ObjectiveMessages" index="1" instance=ExtResource( 14 )]
+script = ExtResource( 13 )
+text = "open the door by clicking Left mouse button on it!"
+
+[node name="NightvisionMessage" parent="ObjectiveMessages" index="2" instance=ExtResource( 14 )]
+script = ExtResource( 13 )
+text = "press space to  toggle your vision modes
+howerver, remember you can't see detection lights in nightvision mode
+take covers and try to get out without suspicion!"
+
+[node name="LootMessage" parent="ObjectiveMessages" index="3" instance=ExtResource( 14 )]
+script = ExtResource( 13 )
+text = "Before leaving grab the loot to complete the objective "
+
+[node name="ComputerMessage" parent="ObjectiveMessages" index="4" instance=ExtResource( 14 )]
+script = ExtResource( 13 )
+text = "ooops!
+the door seems locked 
+now go to the computer and check for the password!"
+
+[node name="ExitMessage" parent="ObjectiveMessages" index="5" instance=ExtResource( 14 )]
+script = ExtResource( 13 )
+text = "Now,
+enter the password and grab the loot anf head towards exit to complete the mission!"
+[connection signal="combination" from="Computers/Computer" to="LockedDoors/LockedDoor" method="_on_Computer_combination"]
+[connection signal="body_entered" from="ObjectiveMarkers/DoorObjective" to="." method="_on_DoorObjective_body_entered"]
+[connection signal="body_entered" from="ObjectiveMarkers/NightVisionObjective" to="." method="_on_NightVisionObjective_body_entered"]
+[connection signal="body_entered" from="ObjectiveMarkers/BriefcaseObjective" to="." method="_on_BriefcaseObjective_body_entered"]
+[connection signal="body_entered" from="ObjectiveMarkers/LockedDoorObjective" to="." method="_on_LockedDoorObjective_body_entered"]
+[connection signal="body_entered" from="ObjectiveMarkers/ComputerObjective" to="." method="_on_ComputerObjective_body_entered"]

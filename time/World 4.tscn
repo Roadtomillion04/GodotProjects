@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://TileMap.tscn" type="PackedScene" id=2]
+[ext_resource path="res://player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Dash_Sprite .tscn" type="PackedScene" id=5]
+
+[node name="World 4" type="Node"]
+
+[node name="TileMap" parent="." instance=ExtResource( 2 )]
+visible = true
+position = Vector2( -0.25766, -0.0856476 )
+tile_data = PoolIntArray( 655360, 0, 4, 655361, 0, 5, 655362, 0, 5, 655363, 0, 5, 655364, 0, 6, 655365, 0, 6, 655366, 0, 6, 655367, 0, 5, 655368, 0, 196609, 655369, 0, 196609, 655370, 0, 5, 655371, 0, 196609, 655372, 0, 6, 655373, 0, 6, 655374, 0, 5, 655375, 0, 196609, 655376, 0, 6, 655377, 0, 5, 655378, 0, 5, 655379, 0, 5, 655380, 0, 6, 655381, 0, 6, 655382, 0, 196610 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 39.6158, 114.796 )
+
+[node name="Spikes" parent="." instance=ExtResource( 5 )]

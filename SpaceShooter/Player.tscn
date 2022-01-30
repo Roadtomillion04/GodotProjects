@@ -1,0 +1,88 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://space shooter assets/player_ship.png" type="Texture" id=1]
+[ext_resource path="res://Player.gd" type="Script" id=2]
+[ext_resource path="res://HitBox.tscn" type="PackedScene" id=3]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 1.0
+height = 1.0
+
+[sub_resource type="SegmentShape2D" id=2]
+a = Vector2( -49.1933, 36.6254 )
+b = Vector2( 50.4441, 35.8763 )
+
+[sub_resource type="SegmentShape2D" id=3]
+a = Vector2( 40.7051, -59.2663 )
+b = Vector2( -9.4882, 28.3847 )
+
+[sub_resource type="SegmentShape2D" id=4]
+a = Vector2( 2.49826, -54.7713 )
+b = Vector2( 51.1932, 30.6322 )
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 47.6734
+
+[node name="Player" type="KinematicBody2D"]
+position = Vector2( 103, 306 )
+rotation = 1.5708
+collision_mask = 2
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+disabled = true
+
+[node name="PlayerCollison" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCollison"]
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="PlayerCollison"]
+position = Vector2( -43.4509, 3.74574 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="PlayerCollison"]
+shape = SubResource( 4 )
+
+[node name="HitBox" parent="." instance=ExtResource( 3 )]
+collision_mask = 0
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource( 5 )
+
+[node name="FiringPositions" type="Node2D" parent="."]
+position = Vector2( -26.1922, -3.17471 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Position2D" type="Position2D" parent="FiringPositions"]
+position = Vector2( -0.943878, -60.696 )
+
+[node name="Position2D2" type="Position2D" parent="FiringPositions"]
+position = Vector2( 55.0003, -62.858 )
+
+[node name="FireDelayTimer" type="Timer" parent="."]
+wait_time = 17.0
+one_shot = true
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+smoothing_enabled = true
+
+[node name="POs" type="Position2D" parent="."]
+position = Vector2( -1.50024, -66.5 )
+[connection signal="area_entered" from="PlayerCollison" to="." method="_on_PlayerCollison_area_entered"]
+
+[editable path="HitBox"]

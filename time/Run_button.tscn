@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Run_button.gd" type="Script" id=1]
+[ext_resource path="res://Action_button.tscn" type="PackedScene" id=2]
+
+[node name="Run_button" instance=ExtResource( 2 )]
+text = "Flee"
+script = ExtResource( 1 )
+world_exit = "res://Node2D.tscn"
+player_pos = Vector2( 1, 1 )
+
+[node name="Hover_description" parent="." index="0"]
+description = "Run away?"

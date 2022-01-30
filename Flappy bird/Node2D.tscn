@@ -1,0 +1,127 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://FlappyBird.tscn" type="PackedScene" id=1]
+[ext_resource path="res://dpcomic.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://WallReseter.gd" type="Script" id=3]
+[ext_resource path="res://Game.gd" type="Script" id=4]
+[ext_resource path="res://Walls.tscn" type="PackedScene" id=5]
+[ext_resource path="res://ScoreLabel.gd" type="Script" id=6]
+[ext_resource path="res://mus_spider.ogg" type="AudioStream" id=7]
+[ext_resource path="res://GrassBackground.png" type="Texture" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "CountDown"
+length = 3.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ "PREPARE
+     3", "PREPARE
+     2", "PREPARE
+     1", "PREPARE
+    GO" ]
+}
+
+[node name="World" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="BG" type="Sprite" parent="."]
+modulate = Color( 0.145098, 0.141176, 0.647059, 1 )
+scale = Vector2( 5.63539, 2.79095 )
+texture = ExtResource( 8 )
+centered = false
+region_rect = Rect2( -260, -10, 370, 180 )
+
+[node name="FlappyBird" parent="." instance=ExtResource( 1 )]
+position = Vector2( 180, 90 )
+
+[node name="WallReseter" type="Area2D" parent="."]
+position = Vector2( 0, 88 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallReseter"]
+position = Vector2( -0.66806, 1.33673 )
+scale = Vector2( 1, 10 )
+shape = SubResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enable = true
+script = ExtResource( 6 )
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer"]
+margin_left = 5.0
+margin_top = 3.0
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 2 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HighscoreLabel" type="Label" parent="CanvasLayer"]
+margin_left = 5.0
+margin_top = 20.0
+margin_right = 40.0
+margin_bottom = 34.0
+custom_fonts/font = SubResource( 2 )
+text = "Best"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -26.0
+margin_top = -49.0
+margin_right = 34.0
+margin_bottom = -14.0
+custom_fonts/font = SubResource( 3 )
+text = "PREPARE
+     3"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/CountDown = SubResource( 4 )
+
+[node name="Walls" parent="." instance=ExtResource( 5 )]
+position = Vector2( 461.332, 34.7963 )
+
+[node name="Walls2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 608.374, 38.1637 )
+
+[node name="Walls3" parent="." instance=ExtResource( 5 )]
+position = Vector2( 756.539, 46.0209 )
+
+[node name="Walls4" parent="." instance=ExtResource( 5 )]
+position = Vector2( 913.684, 37.0413 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+autoplay = true
+[connection signal="died" from="FlappyBird" to="." method="_on_FlappyBird_died"]
+[connection signal="area_entered" from="WallReseter" to="WallReseter" method="_on_WallReseter_area_entered"]
